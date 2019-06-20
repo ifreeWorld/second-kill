@@ -1,0 +1,48 @@
+{
+  "name": "second-kill",
+  "version": "1.20",
+  "manifest_version": 2,
+  "description": "second-kill",
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "notifications",
+    "management",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "browser_action": {
+    "default_icon": "src/img/ico.png",
+    "default_title": "second-kill",
+    "default_popup": "src/popup/popup.html"
+  },
+  // "background": {
+  //   "scripts": ["src/lib/jquery-1.10.2.js", "src/bg/bg.js"]
+  // },
+  "background":
+	{
+		// 2种指定方式，如果指定JS，那么会自动生成一个背景页
+		"page": "src/bg/bg.html"
+	},
+  "options_page": "src/option/options.html",
+  "icons": {
+    "16": "src/img/ico.png",
+    "48": "src/img/ico.png",
+    "128": "src/img/ico.png"
+  },
+  "web_accessible_resources": [
+    "src/lib/jquery-1.10.2.js",
+    "src/main/inject_qiuxuan.js"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.taobao.com/*",
+        "*://*.tmall.com/*",
+        "*://*.enjoyapps.org/miaotest.htm*"
+      ],
+      "js": ["src/lib/jquery-1.10.2.js", "src/main/content_scripts.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
